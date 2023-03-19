@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Tools4Ux YouTube Video Downloader</title>
+   <style>
+      /* Add some basic styles */
+      body {
+         font-family: Arial, sans-serif;
+         margin: 0;
+         padding: 0;
+      }
+
+      .container {
+         width: 80%;
+         margin: auto;
+         text-align: center;
+      }
+
+      .form-group {
+         margin-bottom: 20px;
+      }
+
+      label {
+         display: block;
+         margin-bottom: 10px;
+      }
+
+      input[type="text"],
+      select {
+         display: block;
+         margin: 0 auto;
+         padding: 10px;
+         width: 100%;
+         max-width: 500px;
+         border: 1px solid #ccc;
+         border-radius: 5px;
+         box-sizing: border-box;
+      }
+
+      .btn-download {
+         background-color: #008CBA;
+         color: #fff;
+         border: none;
+         padding: 10px 20px;
+         font-size: 16px;
+         border-radius: 5px;
+         cursor: pointer;
+         transition: background-color 0.3s ease;
+      }
+
+      .btn-download:hover {
+         background-color: #005b80;
+      }
+
+      .download-video {
+         margin-top: 20px;
+      }
+
+      iframe {
+         width: 100%;
+         height: 60px;
+         border: 0;
+         overflow: hidden;
+      }
+
+      .video-downloader {
+         border: 1px solid #ccc;
+         padding: 20px;
+         margin: 20px 0;
+         background-color: #f9f9f9;
+      }
+
+      .video-downloader h2 {
+         font-size: 24px;
+         margin-bottom: 10px;
+         text-align: center;
+      }
+
+      .video-downloader div {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+      }
+
+      .video-downloader p {
+         font-size: 16px;
+         line-height: 1.5;
+         margin-bottom: 20px;
+      }
+      }
+   </style>
+</head>
+
+<body>
+   <div class="container">
+      <h1> Tools4Ux YouTube Video Downloader</h1>
+      <div class="form-group">
+         <label for="video-url">Video URL:</label>
+         <input type="text" id="video-url" placeholder="Enter YouTube video URL">
+      </div>
+      <div class="form-group">
+         <label for="video-format">Video Format:</label>
+         <select id="video-format">
+            <option value="mp4">MP4</option>
+            <option value="webm">WEBM</option>
+            <option value="avi">AVI</option>
+         </select>
+      </div>
+      <button class="btn-download">Download Video</button>
+      <div class="download-video"></div>
+   </div>
+   <div class="video-downloader">
+      <h2>Tools4Ux YouTube Video Downloader</h2>
+      <div>
+         <img width="90%" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEigxFg8JK4-a3AmaM6KbXw8Fg8HDZWGp2RK4v8CmzsRrDmHCyUBC_NzNx9FkOSt09pmlVtOa-uycREx7MW55n-b1lOSVbqUd_UrHKKH2PulR82aYSKwrd7V_YcBuGO-J1WQqwHd9JnaT9aj4devmI-hCGVJ828TObl0drh5sP7PSRNUy9jPxh316NRGLQ/s600/Picsart_23-03-15_14-14-06-103.png" alt="Tools4Ux YouTube Image">
+      </div>
+      <p>With the Tools4Ux YouTube Video Downloader, you can easily download YouTube videos for offline viewing. Simply paste the video URL into the input field and click the download button. The video will be downloaded in the highest quality available.</p>
+   </div>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script>
+      $(document).ready(function() {
+         $(".btn-download").click(function() {
+            var link = $("#video-url").val();
+            var format = $("#video-format").val();
+            if (link === '') {
+               alert("Please enter a video url!");
+            } else {
+               downloadVideo(link, format);
+            }
+         });
+
+         function downloadVideo(link, format) {
+            $('.download-video').html('<iframe src="https://loader.to/api/button/?url=' + link + '&f=' + format + '"></iframe>');
+         }
+      });
+   </script>
+</body>
+
+</html>

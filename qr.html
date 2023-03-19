@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Advanced QR Code Generator</title>
+   <style>
+      form {
+         width: 80%;
+         flex-direction: column;
+         align-items: center;
+         margin: 20px auto;
+      }
+
+      label {
+         margin-bottom: 10px;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      select {
+         margin-bottom: 20px;
+         padding: 5px;
+         width: 100%;
+         box-sizing: border-box;
+      }
+
+      input[type="submit"] {
+         padding: 10px;
+         background-color: #007bff;
+         color: white;
+         border: none;
+         cursor: pointer;
+      }
+
+      .qr-code-container {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+      }
+
+      .qr-code {
+         max-width: 100%;
+         max-height: 400px;
+      }
+
+      /* Media Queries */
+      @media only screen and (min-width: 768px) {
+         form {
+            flex-direction: row;
+            justify-content: center;
+         }
+
+         label {
+            margin-right: 20px;
+            margin-bottom: 0;
+         }
+
+         input[type="text"],
+         input[type="number"],
+         select {
+            margin-bottom: 0;
+            margin-right: 20px;
+         }
+
+         input[type="submit"] {
+            margin-top: 20px;
+         }
+
+         .qr-code-container {
+            flex-direction: row;
+            justify-content: center;
+         }
+
+         .qr-code {
+            max-width: 400px;
+            max-height: 100%;
+         }
+      }
+   </style>
+</head>
+
+<body>
+   <h1 style="text-align: center">Advanced QR Code Generator</h1>
+   <form>
+      <label for="content-input">Enter content to encode:</label>
+      <input type="text" id="content-input" placeholder="Enter content here" required>
+
+      <label for="size-input">Size:</label>
+      <input type="number" id="size-input" placeholder="Enter size in pixels (default: 300)" min="100" max="1000" value="300">
+
+      <label for="color-input">Color:</label>
+      <select id="color-input">
+         <option value="000000">Black</option>
+         <option value="ffffff">White</option>
+         <option value="ff0000">Red</option>
+         <option value="00ff00">Green</option>
+         <option value="0000ff">Blue</option>
+      </select>
+
+      <input type="submit" value="Generate QR Code">
+   </form>
+
+   <div class="qr-code-container">
+      <h2>QR Code:</h2>
+      <img class="qr-code" id="qr-code" src="" alt="">
+   </div>
+
+   <script>
+      const form = document.querySelector("form");
+      const contentInput = document.getElementById("content-input");
+      const sizeInput = document.getElementById("size-input");
+      const colorInput = document.getElementById("color-input");
+      const qrCode = document.getElementById("qr-code");
+
+      form.addEventListener("submit", (event) => {
+         event.preventDefault();
+
+         const content = contentInput.value;
+         const size = sizeInput.value;
+         const color = colorInput.value;
+
+         // Encode content to be used in URL
+         const encodedContent = encodeURIComponent(content);
+
+         // Construct the URL for the QR code
+         const url = `https://chart.googleapis.com/chart?cht=qr&chl=${encodedContent}&chs=${size}x${size}&choe=UTF-8&chld=L|0&bg=${color}`;
+
+         // Set the src attribute of the QR code image to the URL
+         qrCode.src = url;
+      });
+   </script>
+</body>
+
+</html>
